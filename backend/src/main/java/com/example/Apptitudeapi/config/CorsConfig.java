@@ -14,9 +14,14 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173")
+                        .allowedOrigins(
+                                "http://localhost:5173",
+                                "http://localhost:4173",
+                                "https://aptitude-project-cmw7psi47-rajakumarans-projects-b759b1f6.vercel.app"
+                        )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                        .allowedHeaders("*");
+                        .allowedHeaders("*")
+                        .allowCredentials(false);
             }
         };
     }
