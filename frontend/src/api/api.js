@@ -1,26 +1,29 @@
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 const topicApiMap = {
-  Age: "ages",
-  ProfitAndLoss: "profitAndLosses",
-  SimpleInterest: "simpleInterests",
-  WorkAndTime: "workAndTimes",
-  SpeedTimeDistance: "speedTimeDistances",
-  MixtureandAlligation: "mixtureandAlligations",
-  PipesandCistern: "pipesandCisterns",
-  PermutationandCombination: "permutationAndCombinations",
-  Random: "randomQuestions",
+  age: "ages",
+  profitandloss: "profitAndLosses",
+  simpleinterest: "simpleInterests",
+  workandtime: "workAndTimes",
+  speedtimedistance: "speedTimeDistances",
+  mixtureandalligation: "mixtureandAlligations",
+  pipesandcistern: "pipesandCisterns",
+  permutationandcombination: "permutationAndCombinations",
+  random: "randomQuestions",
 };
 
 export const getQuestionsByTopic = async (topic) => {
-  if (!topicApiMap[topic]) {
-    console.error("❌ Unknown topic:", topic);
+  // 🔑 normalize incoming topic
+  const normalizedTopic = topic.toLowerCase().replace(/[\s&]/g, ""); // remove spaces & &
+
+  const endpoint = topicApiMap[normalizedTopic];
+
+  if (!endpoint) {
+    console.error("❌ Unknown topic after normalize:", normalizedTopic);
     return [];
   }
 
-  const endpoint = topicApiMap[topic];
   const url = `${BASE_URL}/api/${endpoint}`;
-
   console.log("✅ Fetching:", url);
 
   const res = await fetch(url);
