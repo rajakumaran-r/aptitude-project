@@ -4,17 +4,15 @@ export default function QuestionCard({ question, current, total, onAnswer }) {
   const [selected, setSelected] = useState(null);
   const [showSolution, setShowSolution] = useState(false);
 
-  // ✅ SAFE OPTIONS
   const options = Array.isArray(question?.options) ? question.options : [];
 
   function handleSelect(option) {
-    if (selected) return;
+    if (selected !== null) return;
 
     setSelected(option);
     setShowSolution(true);
 
-    const isCorrect = option === question.answer;
-    onAnswer(isCorrect);
+    onAnswer(option === question.answer);
   }
 
   return (
@@ -29,16 +27,16 @@ export default function QuestionCard({ question, current, total, onAnswer }) {
 
       {/* OPTIONS */}
       <div className="options">
-        {options.length === 0 && (
-          <p style={{ opacity: 0.6 }}>No options available</p>
-        )}
-
         {options.map((opt, i) => {
           let className = "option-btn";
 
-          if (selected) {
+          if (selected !== null) {
             if (opt === question.answer) className += " correct";
             else if (opt === selected) className += " wrong";
+          }
+
+          if (opt === selected) {
+            className += " selected";
           }
 
           return (
@@ -46,7 +44,7 @@ export default function QuestionCard({ question, current, total, onAnswer }) {
               key={i}
               className={className}
               onClick={() => handleSelect(opt)}
-              disabled={!!selected}
+              disabled={selected !== null}
             >
               {opt}
             </button>
