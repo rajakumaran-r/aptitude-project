@@ -1,25 +1,22 @@
 const BASE_URL = import.meta.env.VITE_API_URL;
 
 const topicApiMap = {
-  age: "ages",
-  profitandloss: "profitAndLosses",
-  simpleinterest: "simpleInterests",
-  workandtime: "workAndTimes",
-  speedtimedistance: "speedTimeDistances",
-  mixtureandalligation: "mixtureandAlligations",
-  pipesandcistern: "pipesandCisterns",
-  permutationandcombination: "permutationAndCombinations",
-  random: "randomQuestions",
+  Age: "ages",
+  ProfitAndLoss: "profitAndLosses",
+  SimpleInterest: "simpleInterests",
+  WorkAndTime: "workAndTimes",
+  SpeedTimeDistance: "speedTimeDistances",
+  MixtureandAlligation: "mixtureandAlligations",
+  PipesandCistern: "pipesandCisterns",
+  PermutationandCombination: "permutationAndCombinations",
+  Random: "randomQuestions",
 };
 
 export const getQuestionsByTopic = async (topic) => {
-  // 🔑 normalize incoming topic
-  const normalizedTopic = topic.toLowerCase().replace(/[\s&]/g, ""); // remove spaces & &
-
-  const endpoint = topicApiMap[normalizedTopic];
+  const endpoint = topicApiMap[topic];
 
   if (!endpoint) {
-    console.error("❌ Unknown topic after normalize:", normalizedTopic);
+    console.error("❌ Unknown topic received from UI:", topic);
     return [];
   }
 
