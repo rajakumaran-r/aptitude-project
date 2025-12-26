@@ -1,0 +1,336 @@
+/* =========================
+   THEME VARIABLES
+========================= */
+
+/* LIGHT MODE — PURE WHITE */
+:root {
+  --bg: #ffffff;
+  --card: #ffffff;
+  --border: #d1d5db;
+  --text: #000000;
+  --muted: #6b7280;
+}
+
+/* DARK MODE — ONLY GREY */
+body.dark {
+  --bg: #0b0b0b;
+  --card: #141414;
+  --border: #2a2a2a;
+  --text: #e5e5e5;
+  --muted: #9ca3af;
+}
+
+/* =========================
+   GLOBAL
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* =========================
+   PAGE
+========================= */
+.exam-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 16px;
+}
+
+/* =========================
+   HEADER
+========================= */
+.exam-header {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+}
+
+.exam-title {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+/* =========================
+   STATS / BUTTONS
+========================= */
+.stat {
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.theme-toggle,
+.settings-btn {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* =========================
+   QUESTION CARD
+========================= */
+.question-card {
+  width: 100%;
+  max-width: 900px;
+  background: var(--card);
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  border: 1px solid var(--border);
+}
+
+.question-meta {
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.question-text {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+/* =========================
+   OPTIONS
+========================= */
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.option-btn {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+}
+
+/* SELECTED */
+.option-btn.selected {
+  border-color: var(--text);
+}
+
+/* CORRECT — GREY ONLY */
+.option-btn.correct {
+  background: #1f1f1f;
+  color: white;
+}
+
+/* WRONG — GREY ONLY */
+.option-btn.wrong {
+  background: #2a2a2a;
+  color: white;
+}
+
+.option-btn:disabled {
+  cursor: not-allowed;
+}
+
+/* =========================
+   LOADING
+========================= */
+.loading {
+  font-size: 20px;
+  margin-top: 50px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+  .options {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================
+   SETTINGS MODAL
+========================= */
+.settings-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.settings-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  width: 320px;
+}
+
+.settings-panel h3 {
+  margin-bottom: 16px;
+}
+
+.setting-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.setting-item input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+.setting-item button {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  color: var(--text);
+}
+
+.setting-actions {
+  text-align: right;
+}
+.solution {
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  background: var(--card);
+  color: var(--text);
+}
+.topic-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: #f1f5f9;
+}
+.topic-card {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 30px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.topic-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+}
+.topics-title {
+  text-align: center;
+  font-size: 38px;
+  font-weight: 700;
+  margin-bottom: 45px;
+  color: #f8fafc;
+}
+.topics-page {
+  min-height: 100vh;
+  padding: 50px 24px;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: #e5e7eb;
+}
+/* =========================
+   HOME PAGE
+========================= */
+
+.home-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+}
+
+.home-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 50px 40px;
+  text-align: center;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.home-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.home-subtitle {
+  font-size: 16px;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+.home-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home-btn-primary {
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #1f2937;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.home-btn-secondary {
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  .home-card {
+    padding: 40px 24px;
+  }
+
+  .home-title {
+    font-size: 32px;
+  }
+}
