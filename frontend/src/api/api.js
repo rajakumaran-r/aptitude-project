@@ -1,35 +1,32 @@
-import axios from "axios";
-
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = import.meta.env.VITE_API_URL;
 
 const topicApiMap = {
-  Age: "/ages",
-  ProfitAndLoss: "/profitAndLosses",
-  SimpleInterest: "/simpleInterests",
-  WorkAndTime: "/workAndTimes",
-  SpeedTimeDistance: "/speedTimeDistances",
-  MixtureandAlligation: "/mixtureandAlligations",
-  PipesandCistern: "/pipesandCisterns",
-  PermutationandCombination: "/permutationAndCombinations",
-  Random: "/randomQuestions",
+  Age: "ages",
+  ProfitAndLoss: "profitAndLosses",
+  SimpleInterest: "simpleInterests",
+  WorkAndTime: "workAndTimes",
+  SpeedTimeDistance: "speedTimeDistances",
+  MixtureandAlligation: "mixtureandAlligations",
+  PipesandCistern: "pipesandCisterns",
+  PermutationandCombination: "permutationAndCombinations",
+  Random: "randomQuestions",
 };
 
 export const getQuestionsByTopic = async (topic) => {
-  let apiTopic = topic.toLowerCase();
-
-  // 🔧 FIX ONLY THESE TWO (DO NOT TOUCH OTHERS)
-  if (apiTopic === "age") {
-    apiTopic = "ages";
+  if (!topicApiMap[topic]) {
+    console.error("❌ Unknown topic:", topic);
+    return [];
   }
 
-  if (apiTopic === "pipesandcistern") {
-    apiTopic = "pipesandcisterns";
-  }
+  const endpoint = topicApiMap[topic];
+  const url = `${BASE_URL}/api/${endpoint}`;
 
-  const res = await fetch(`${BASE_URL}/api/${apiTopic}`);
+  console.log("✅ Fetching:", url);
+
+  const res = await fetch(url);
 
   if (!res.ok) {
-    throw new Error(`Failed to fetch ${apiTopic}`);
+    throw new Error(`Failed to fetch ${endpoint}`);
   }
 
   return res.json();
