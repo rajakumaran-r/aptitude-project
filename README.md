@@ -1,19 +1,19 @@
-# Aptitude Quiz – Full Stack Application 🚀
+# Aptitude Quiz – Full Stack Application 
 
-🔗 **Live Application**  
+ **Live Application**  
 👉 https://aptitude-project.vercel.app
 
-🔗 **Backend API (Render)**  
+ **Backend API (Render)**  
 👉 https://aptitude-project-y9rv.onrender.com
 
 ---
 
-## 📌 About the Project
+##  About the Project
 A production-ready full-stack aptitude quiz platform that simulates real exam conditions with MCQs, timers, instant evaluation, and analytics.
 
 ---
 
-## 🧠 Features
+##  Features
 - Topic-wise aptitude questions
 - Real-time timer (exam simulation)
 - Correct / wrong answer tracking
