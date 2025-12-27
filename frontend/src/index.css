@@ -2,26 +2,32 @@
    THEME VARIABLES
 ========================= */
 
-/* LIGHT MODE — PURE WHITE */
+/* LIGHT MODE */
 :root {
   --bg: #ffffff;
   --card: #ffffff;
   --border: #d1d5db;
-  --text: #000000;
+  --text: #111827;
   --muted: #6b7280;
+
+  --hover: #f3f4f6;
+  --correct: #16a34a;
+  --wrong: #dc2626;
 }
 
-/* DARK MODE — ONLY GREY */
+/* DARK MODE */
 body.dark {
   --bg: #0b0b0b;
   --card: #141414;
   --border: #2a2a2a;
   --text: #e5e5e5;
   --muted: #9ca3af;
+
+  --hover: rgba(255, 255, 255, 0.08);
 }
 
 /* =========================
-   GLOBAL
+   GLOBAL RESET
 ========================= */
 * {
   box-sizing: border-box;
@@ -31,18 +37,18 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: "Segoe UI", sans-serif;
+  font-family: "Segoe UI", system-ui, sans-serif;
 }
 
 /* =========================
-   PAGE
+   PAGE LAYOUT
 ========================= */
 .exam-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px 16px;
+  padding: 32px 16px;
 }
 
 /* =========================
@@ -74,7 +80,6 @@ body {
   font-weight: 600;
   background: var(--card);
   border: 1px solid var(--border);
-  color: var(--text);
 }
 
 .theme-toggle,
@@ -88,6 +93,11 @@ body {
   color: var(--text);
 }
 
+.theme-toggle:hover,
+.settings-btn:hover {
+  background: var(--hover);
+}
+
 /* =========================
    QUESTION CARD
 ========================= */
@@ -95,8 +105,8 @@ body {
   width: 100%;
   max-width: 900px;
   background: var(--card);
-  padding: 25px;
-  border-radius: 12px;
+  padding: 26px;
+  border-radius: 14px;
   margin-bottom: 30px;
   border: 1px solid var(--border);
 }
@@ -104,11 +114,13 @@ body {
 .question-meta {
   color: var(--muted);
   margin-bottom: 10px;
+  font-size: 14px;
 }
 
 .question-text {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
   line-height: 1.6;
+  font-size: 16px;
 }
 
 /* =========================
@@ -121,42 +133,56 @@ body {
 }
 
 .option-btn {
-  background: #ffffff; /* DEFAULT */
-  color: #111;
-  border: 1px solid #d0d0d0;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
   padding: 14px;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
   transition: all 0.2s ease;
 }
 
 .option-btn:hover {
-  background: #f5f5f5;
+  background: var(--hover);
 }
 
-/* CLICKED OPTION */
 .option-btn.selected {
   border-width: 2px;
 }
 
 /* CORRECT */
 .option-btn.correct {
-  background: #16a34a;
-  color: #fff;
-  border-color: #16a34a;
+  background: var(--correct);
+  color: #ffffff;
+  border-color: var(--correct);
 }
 
 /* WRONG */
 .option-btn.wrong {
-  background: #dc2626;
-  color: #fff;
-  border-color: #dc2626;
+  background: var(--wrong);
+  color: #ffffff;
+  border-color: var(--wrong);
 }
 
 /* DISABLED */
 .option-btn:disabled {
   cursor: not-allowed;
-  opacity: 0.95;
+  opacity: 0.9;
+}
+
+/* =========================
+   SOLUTION BOX
+========================= */
+.solution {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  font-size: 14px;
+  color: var(--text);
 }
 
 /* =========================
@@ -168,20 +194,12 @@ body {
 }
 
 /* =========================
-   MOBILE
-========================= */
-@media (max-width: 768px) {
-  .options {
-    grid-template-columns: 1fr;
-  }
-}
-/* =========================
    SETTINGS MODAL
 ========================= */
 .settings-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.65);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -191,7 +209,7 @@ body {
 .settings-panel {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 14px;
   padding: 24px;
   width: 320px;
 }
@@ -224,79 +242,38 @@ body {
   color: var(--text);
 }
 
+.setting-item button:hover {
+  background: var(--hover);
+}
+
 .setting-actions {
   text-align: right;
 }
-.solution {
-  margin-top: 16px;
-  padding: 12px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 14px;
-  background: var(--card);
-  color: var(--text);
-}
-.topic-card h3 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 18px;
-  color: #f1f5f9;
-}
-.topic-card {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-  border-radius: 18px;
-  padding: 30px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
 
-.topic-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
-}
-.topics-title {
-  text-align: center;
-  font-size: 38px;
-  font-weight: 700;
-  margin-bottom: 45px;
-  color: #f8fafc;
-}
-.topics-page {
-  min-height: 100vh;
-  padding: 50px 24px;
-  background: linear-gradient(135deg, #0f172a, #1e3a8a);
-  color: #e5e7eb;
-}
 /* =========================
    HOME PAGE
 ========================= */
-
 .home-container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--bg);
 }
 
 .home-card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 18px;
   padding: 50px 40px;
   text-align: center;
   max-width: 520px;
   width: 100%;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .home-title {
   font-size: 42px;
   font-weight: 700;
   margin-bottom: 12px;
-  color: var(--text);
 }
 
 .home-subtitle {
@@ -316,8 +293,8 @@ body {
   border-radius: 12px;
   font-size: 16px;
   font-weight: 600;
-  background: #1f2937;
-  color: #ffffff;
+  background: var(--text);
+  color: var(--bg);
   border: none;
   cursor: pointer;
 }
@@ -331,6 +308,24 @@ body {
   border: 1px solid var(--border);
   color: var(--text);
   cursor: pointer;
+}
+
+.home-btn-primary:hover,
+.home-btn-secondary:hover {
+  opacity: 0.9;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px) {
+  .options {
+    grid-template-columns: 1fr;
+  }
+
+  .exam-title {
+    font-size: 22px;
+  }
 }
 
 @media (max-width: 500px) {
